@@ -1,0 +1,6 @@
+<div>
+  {{product.name}} - {{product.price}}
+  {{product.description}}
+  Is available {{product.isAvailable}}
+</div>
+<button [disabled]="!product.isAvailable" (click)="onBuy()">Buy</button>
