@@ -18,6 +18,7 @@ export class ProductComponentComponent implements OnInit {
   }
 
   onBuy() {
+    // я бы назвал buyEvent
     this.handleBuy.emit(this.product);
   }
 }
