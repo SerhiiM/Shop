@@ -1,5 +1,0 @@
-<div *ngIf="(cartServiceService.basket$ | async).length !== 0">
-  <div *ngFor="let product of (cartServiceService.basket$ | async); let i = index">
-    {{i}} - {{product.name}}
-  </div>
-</div>

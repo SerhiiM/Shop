@@ -1,0 +1,6 @@
+<div *ngIf="(cartServiceService.basket$ | async).list.length !== 0">
+  <div *ngFor="let product of (cartServiceService.basket$ | async).list; let i = index" appColorDirective>
+    {{i}} - {{product.name}} - amount : {{product.amount}}
+  </div>
+  <b>Sum {{(cartServiceService.basket$ | async).sum}}</b>
+</div>

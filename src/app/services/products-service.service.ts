@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import {Category} from '../models/enums.model';
 import {ProductModel} from '../models/product.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ProductsServiceService {
 
   constructor() { }

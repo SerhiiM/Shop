@@ -1,10 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ProductModel} from '../models/product.model';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ProductModel} from '../../models/product.model';
 
 @Component({
   selector: 'app-product-component',
   templateUrl: './product-component.component.html',
-  styleUrls: ['./product-component.component.css']
+  styleUrls: ['./product-component.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductComponentComponent implements OnInit {
 
