@@ -12,7 +12,7 @@ import {ProductListComponentComponent} from './product-list-component/product-li
     CommonModule
   ],
   exports: [
-    ProductComponentComponent,
+    ProductComponentComponent, // этот компонент не нужно делать публичным
     ProductListComponentComponent
   ]
 })
