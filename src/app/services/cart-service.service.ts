@@ -5,20 +5,33 @@ import {ProductModel} from '../models/product.model';
 @Injectable({
   providedIn: 'root',
 })
-export class CartServiceService {
-  basket$ = new BehaviorSubject <{sum: number, list: ProductModel[]}> ({sum: 0, list: []});
+export class CartService {
+  basket$ = new BehaviorSubject <ProductModel[]> ([]);
   constructor() {
   }
 
-  handleBuyRequest(product: ProductModel) {
-    const currentValue = this.basket$.value;
-    const index = currentValue.list.findIndex(p => p.name === product.name);
+  handleBuyRequest(product: ProductModel, amount: number = 1) {
+    const currentList = this.basket$.value;
+    const index = currentList.findIndex(p => p.name === product.name);
     if (index >= 0) {
-      currentValue.list[index].amount++;
+      currentList[index].amount += amount;
     } else {
-      currentValue.list.push({...product, amount: 1});
+      currentList.push({...product, amount});
     }
-    currentValue.sum += product.price;
-    this.basket$.next(currentValue);
+    this.basket$.next([...currentList]);
+  }
+
+  handleDeleteRequest(product: ProductModel, amount: number = 1) {
+    const currentList = this.basket$.value;
+    const index = currentList.findIndex(p => p.name === product.name);
+    currentList[index].amount -= amount;
+    if (currentList[index].amount === 0) {
+      currentList.splice(index, 1);
+    }
+    this.basket$.next([...currentList]);
+  }
+
+  handleCleanRequest() {
+    this.basket$.next([]);
   }
 }

@@ -10,7 +10,7 @@ import {ProductModel} from '../../models/product.model';
 export class ProductComponentComponent implements OnInit {
 
   @Input() product: ProductModel;
-  @Output() handleBuy = new EventEmitter<ProductModel>();
+  @Output() handleBuy = new EventEmitter<{product: ProductModel, amount: number}>();
 
   constructor() {
   }
@@ -18,7 +18,7 @@ export class ProductComponentComponent implements OnInit {
   ngOnInit() {
   }
 
-  onBuy() {
-    this.handleBuy.emit(this.product);
+  onBuy(amount: number = 1) {
+    this.handleBuy.emit({product: this.product, amount});
   }
 }

@@ -4,3 +4,4 @@
   Is available {{product.isAvailable}}
 </div>
 <button [disabled]="!product.isAvailable" (click)="onBuy()">Buy</button>
+<button [disabled]="!product.isAvailable" (click)="onBuy(3)">Buy several</button>
