@@ -10,7 +10,8 @@ export class ProductsServiceService {
   constructor() { }
 
   getProducts(): ProductModel[] {
-    return [{
+    return [
+      {
       name: 'Cola',
       description: 'Best beverage',
       price: 10,
@@ -23,6 +24,21 @@ export class ProductsServiceService {
         price: 15,
         category: Category.food,
         isAvailable: true,
-      }];
+      },
+      {
+        name: 'Hot-dog',
+        description: 'Best Hot-dog',
+        price: 25,
+        category: Category.food,
+        isAvailable: false,
+      },
+      {
+        name: 'Dress',
+        description: 'Simple dress',
+        price: 55,
+        category: Category.clothes,
+        isAvailable: true,
+      }
+      ];
   }
 }

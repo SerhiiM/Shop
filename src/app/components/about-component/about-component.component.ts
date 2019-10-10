@@ -24,7 +24,6 @@ export class AboutComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.localStorageService) { this.localStorageService.getSet('test'); }
-  }
+    if (this.localStorageService) { this.localStorageService.getSet('test'); }  }
 
 }

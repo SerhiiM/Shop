@@ -1,8 +1,18 @@
 <div *ngIf="(cartService.basket$ | async).length !== 0">
-  <div *ngFor="let product of (cartService.basket$ | async); let i = index" appColorDirective>
-    {{i}} - {{product.name}} - amount : {{product.amount}}
+  <div *ngFor="let product of (cartService.basket$ | async) | orderBy : {key: key, order: order}; let i = index" appColorDirective>
+    {{i}} - {{product.name}} price - {{product.price | currency}} - amount : {{product.amount}}
     <button (click)="delete(product)">Delete</button>
   </div>
-  <b>Sum {{countTotalAmount((cartService.basket$ | async))}}</b>
+  <b>Sum {{countTotalAmount((cartService.basket$ | async) ) | currency}}</b>
   <button (click)="clean()">Clean</button>
+  <label for="key">Sort by</label>
+  <select id="key" (change)="handleSelectKey($event.target.value)">
+    <option value="price">Price</option>
+    <option value="name">Name</option>
+  </select>
+  <label for="order">Sort direction</label>
+  <select id="order" (change)="handleSelectOrder($event.target.value)">
+    <option value="true">ASC</option>
+    <option value="false">DESC</option>
+  </select>
 </div>

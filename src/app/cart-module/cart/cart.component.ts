@@ -9,7 +9,13 @@ import {ProductModel} from '../../models/product.model';
 })
 export class CartComponent implements OnInit {
 
-  constructor(public cartService: CartService) { }
+  key: string;
+  order: boolean;
+
+  constructor(public cartService: CartService) {
+    this.key = 'price';
+    this.order = true;
+  }
 
   ngOnInit() {
   }
@@ -25,4 +31,13 @@ export class CartComponent implements OnInit {
   clean() {
     this.cartService.handleCleanRequest();
   }
+
+  handleSelectKey(value: string) {
+    this.key = value;
+  }
+
+  handleSelectOrder(value: string) {
+    this.order = (value === 'true');
+  }
+
 }
