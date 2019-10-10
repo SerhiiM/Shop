@@ -12,7 +12,7 @@ export class ProductListComponentComponent implements OnInit {
 
   products: ProductModel[];
   constructor(
-    public productsServiceService: ProductsServiceService,
+    public productsServiceService: ProductsServiceService, // <-- дублируется суффикс Service
     public cartService: CartService
   ) { }
 

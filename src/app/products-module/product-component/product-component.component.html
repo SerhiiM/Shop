@@ -4,4 +4,5 @@
   Is available {{product.isAvailable}}
 </div>
 <button [disabled]="!product.isAvailable" (click)="onBuy()">Buy</button>
+<!--  А как пользователь задаст количество необходимого товара? -->
 <button [disabled]="!product.isAvailable" (click)="onBuy(3)">Buy several</button>
