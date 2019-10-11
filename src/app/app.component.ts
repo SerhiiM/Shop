@@ -8,6 +8,8 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 export class AppComponent  implements OnInit {
   @ViewChild('appTitle') title: ElementRef;
   ngOnInit() {
+
+    // а если задействовать Renderer2? а не напрямую редактировать DOM
     this.title.nativeElement.innerText = 'Store title';
   }
 }
