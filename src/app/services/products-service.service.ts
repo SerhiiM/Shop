@@ -9,6 +9,7 @@ export class ProductsServiceService {
 
   constructor() { }
 
+  // пункт 2. возвращаемый тип должен быть Observable<ProductModel[]> или Promise<ProductModel[]>
   getProducts(): ProductModel[] {
     return [
       {
