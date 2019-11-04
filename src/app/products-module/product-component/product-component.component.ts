@@ -7,7 +7,7 @@ import {ProductModel} from '../../models/product.model';
   styleUrls: ['./product-component.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductComponentComponent implements OnInit {
+export class ProductComponent implements OnInit {
 
   @Input() product: ProductModel;
   @Output() handleBuy = new EventEmitter<{product: ProductModel, amount: number}>();

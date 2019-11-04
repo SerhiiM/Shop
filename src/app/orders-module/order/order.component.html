@@ -1,0 +1,7 @@
+<a [routerLink]="['/products-list']" routerLinkActive="active">Shop</a>
+<br/>
+<div *ngIf="(cartService.basket$ | async).length !== 0">
+  <div *ngFor="let product of (cartService.basket$ | async); let i = index">
+    {{i}} - {{product.name}} price - {{product.price | currency}} - amount : {{product.amount}}
+  </div>
+</div>

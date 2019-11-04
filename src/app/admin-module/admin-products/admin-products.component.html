@@ -1,0 +1,8 @@
+<div *ngFor="let product of products">
+  <div>
+    {{product.name}} - {{product.price}}
+    {{product.description}}
+    Is available {{product.isAvailable}}
+  </div>
+  <a [routerLink]="['/admin/product/edit/', product.id]" routerLinkActive="active" >Edit Product</a>
+</div>

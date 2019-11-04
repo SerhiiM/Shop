@@ -8,6 +8,6 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 export class AppComponent  implements OnInit {
   @ViewChild('appTitle') title: ElementRef;
   ngOnInit() {
-    this.title.nativeElement.innerText = 'Store title';
+    this.title.nativeElement.innerText = 'AMAZON 2.0';
   }
 }

@@ -8,6 +8,10 @@ import {ProductModel} from '../models/product.model';
 export class CartService {
   basket$ = new BehaviorSubject <ProductModel[]> ([]);
   constructor() {
+    if (localStorage.getItem('basket$')) {
+      this.basket$.next(JSON.parse(localStorage.getItem('basket$')));
+    }
+    this.basket$.subscribe(data => localStorage.setItem('basket$', JSON.stringify(data)));
   }
 
   handleBuyRequest(product: ProductModel, amount: number = 1) {

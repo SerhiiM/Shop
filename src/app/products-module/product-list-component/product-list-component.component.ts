@@ -23,4 +23,12 @@ export class ProductListComponentComponent implements OnInit {
   onBuy(request) {
     this.cartService.handleBuyRequest(request.product, request.amount);
   }
+
+  switchAdminStatus() {
+    if (localStorage.getItem('isAdmin')) {
+      localStorage.removeItem('isAdmin');
+    } else {
+      localStorage.setItem('isAdmin', 'true');
+    }
+  }
 }

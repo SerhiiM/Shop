@@ -1,3 +1,5 @@
+<a [routerLink]="['/products-list']" routerLinkActive="active">Shop</a>
+<br/>
 <div *ngIf="(cartService.basket$ | async).length !== 0">
   <div *ngFor="let product of (cartService.basket$ | async) | orderBy : {key: key, order: order}; let i = index" appColorDirective>
     {{i}} - {{product.name}} price - {{product.price | currency}} - amount : {{product.amount}}
@@ -15,4 +17,6 @@
     <option value="true">ASC</option>
     <option value="false">DESC</option>
   </select>
+  <br/>
+  <button [routerLink]="['/order']" routerLinkActive="active">Buy</button>
 </div>

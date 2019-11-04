@@ -12,13 +12,15 @@ export class ProductsServiceService {
   getProducts(): ProductModel[] {
     return [
       {
-      name: 'Cola',
-      description: 'Best beverage',
-      price: 10,
-      category: Category.drink,
-      isAvailable: true,
-    },
+        id: 0,
+        name: 'Cola',
+        description: 'Best beverage',
+        price: 10,
+        category: Category.drink,
+        isAvailable: true,
+      },
       {
+        id: 1,
         name: 'Sandwich',
         description: 'Best food',
         price: 15,
@@ -26,6 +28,7 @@ export class ProductsServiceService {
         isAvailable: true,
       },
       {
+        id: 2,
         name: 'Hot-dog',
         description: 'Best Hot-dog',
         price: 25,
@@ -33,6 +36,7 @@ export class ProductsServiceService {
         isAvailable: false,
       },
       {
+        id: 3,
         name: 'Dress',
         description: 'Simple dress',
         price: 55,
