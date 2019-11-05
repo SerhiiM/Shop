@@ -8,11 +8,12 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./admin-product-edit.component.css']
 })
 export class AdminProductEditComponent implements OnInit {
-  products: ProductModel[];
+  product: ProductModel;
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.products = this.route.snapshot.data.products;
+    const productID = +this.route.snapshot.params.id;
+    this.product = this.route.snapshot.data.products.find(p => p.id === productID);
   }
 
 }

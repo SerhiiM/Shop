@@ -29,10 +29,10 @@ const appRoutes: Routes = [
         component: AdminProductsComponent
       },
       {
-        path: 'product/edit:id',
+        path: 'product/edit/:id',
         component: AdminProductEditComponent,
         resolve: {
-          product: ProductResolver
+          products: ProductResolver
         },
       }
     ] },
