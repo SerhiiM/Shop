@@ -20,4 +20,5 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     ProductListComponentComponent
   ]
 })
+// Убрать из названия один раз Module и из названия файла
 export class ProductsModuleModule { }
