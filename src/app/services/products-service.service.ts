@@ -5,6 +5,7 @@ import {ProductModel} from '../models/product.model';
 @Injectable({
   providedIn: 'root',
 })
+// Название не по стайл гайду 
 export class ProductsServiceService {
 
   constructor() { }

@@ -18,6 +18,7 @@ import {AdminProductEditComponent} from './admin-module/admin-product-edit/admin
 import {IsAdminGuard} from './shared-module/is-admin.guard';
 import {ProductResolver} from './services/product-resolver.service';
 
+// Не хотели вынести в отдельный модуль?
 const appRoutes: Routes = [
   { path: 'products-list', component: ProductListComponentComponent },
   { path: 'product/:productID', component: ProductDetailsComponent },

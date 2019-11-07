@@ -14,6 +14,7 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.activeRouter.params.subscribe(({productID}) => {
+      // вместо filter можно использовать find и тогда не надо будет брать первый элемент
       this.product = this.productsServiceService.getProducts().filter(p => p.id === +productID)[0];
     });
   }
