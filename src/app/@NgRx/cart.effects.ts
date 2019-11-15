@@ -6,9 +6,29 @@ import {cartUpdate} from './cart.actions';
 
 @Injectable()
 export class CartEffects {
-  cartEffects$ = createEffect(() => this.actions$.pipe(
+  addToCartEffects$ = createEffect(() => this.actions$.pipe(
     ofType('[Product List] Add product to order'),
     mergeMap(({product, amount}) => this.cartService.handleBuyRequest(product, amount)),
+    mergeMap(() => this.cartService.basket$.pipe(
+      map(products => cartUpdate({products}))
+      )
+    )
+    )
+  );
+
+  deleteFromCartEffects$ = createEffect(() => this.actions$.pipe(
+    ofType('[Cart] Delete product from cart'),
+    mergeMap(({product, amount}) => this.cartService.handleDeleteRequest(product, amount)),
+    mergeMap(() => this.cartService.basket$.pipe(
+      map(products => cartUpdate({products}))
+      )
+    )
+    )
+  );
+
+  clearAllFromCartEffects$ = createEffect(() => this.actions$.pipe(
+    ofType('[Cart] Clear products on cart'),
+    mergeMap(() => this.cartService.handleCleanRequest()),
     mergeMap(() => this.cartService.basket$.pipe(
       map(products => cartUpdate({products}))
       )

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {CartService} from '../../services/cart-service.service';
 import {ProductModel} from '../../models/product.model';
+import {select, Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+import { clearRequest, deleteRequest} from '../../@NgRx/cart.actions';
 
 @Component({
   selector: 'app-cart',
@@ -11,10 +13,12 @@ export class CartComponent implements OnInit {
 
   key: string;
   order: boolean;
+  cart$: Observable<ProductModel[]>;
 
-  constructor(public cartService: CartService) {
+  constructor(private store: Store<any>) {
     this.key = 'price';
     this.order = true;
+    this.cart$ = this.store.pipe(select('cart'));
   }
 
   ngOnInit() {
@@ -25,11 +29,11 @@ export class CartComponent implements OnInit {
   }
 
   delete(p: ProductModel) {
-    this.cartService.handleDeleteRequest(p);
+    this.store.dispatch(deleteRequest({product: p, amount: 1}));
   }
 
   clean() {
-    this.cartService.handleCleanRequest();
+    this.store.dispatch(clearRequest());
   }
 
   handleSelectKey(value: string) {

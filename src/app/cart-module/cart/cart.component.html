@@ -1,11 +1,11 @@
 <a [routerLink]="['/products-list']" routerLinkActive="active">Shop</a>
 <br/>
-<div *ngIf="(cartService.basket$ | async).length !== 0">
-  <div *ngFor="let product of (cartService.basket$ | async) | orderBy : {key: key, order: order}; let i = index" appColorDirective>
+<div *ngIf="(cart$ | async).length !== 0">
+  <div *ngFor="let product of (cart$ | async) | orderBy : {key: key, order: order}; let i = index" appColorDirective>
     {{i}} - {{product.name}} price - {{product.price | currency}} - amount : {{product.amount}}
     <button (click)="delete(product)">Delete</button>
   </div>
-  <b>Sum {{countTotalAmount((cartService.basket$ | async) ) | currency}}</b>
+  <b>Sum {{countTotalAmount((cart$ | async) ) | currency}}</b>
   <button (click)="clean()">Clean</button>
   <label for="key">Sort by</label>
   <select id="key" (change)="handleSelectKey($event.target.value)">

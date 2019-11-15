@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductsServiceService} from '../../services/products-service.service';
+import {BehaviorSubject} from 'rxjs';
+import {ProductsService} from '../../services/products-service.service';
 import {ProductModel} from '../../models/product.model';
 
 @Component({
@@ -9,11 +10,11 @@ import {ProductModel} from '../../models/product.model';
 })
 export class AdminProductsComponent implements OnInit {
 
-  products: ProductModel[];
-  constructor(public productsService: ProductsServiceService) { }
+  products$: BehaviorSubject<ProductModel[]>;
+  constructor(public productsService: ProductsService) { }
 
   ngOnInit() {
-    this.products = this.productsService.getProducts();
+    this.products$ = this.productsService.getProducts();
   }
 
 }

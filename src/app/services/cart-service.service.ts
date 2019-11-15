@@ -27,7 +27,7 @@ export class CartService {
     return this.basket$;
   }
 
-  handleDeleteRequest(product: ProductModel, amount: number = 1) {
+  handleDeleteRequest(product: ProductModel, amount: number = 1) : BehaviorSubject <ProductModel[]> {
     const currentList = this.basket$.value;
     const index = currentList.findIndex(p => p.name === product.name);
     currentList[index].amount -= amount;
@@ -35,9 +35,11 @@ export class CartService {
       currentList.splice(index, 1);
     }
     this.basket$.next([...currentList]);
+    return this.basket$;
   }
 
   handleCleanRequest() {
     this.basket$.next([]);
+    return this.basket$;
   }
 }

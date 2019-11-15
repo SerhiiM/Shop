@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
 import { map, mergeMap} from 'rxjs/operators';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {CartService} from '../services/cart-service.service';
 import {receiveProductList} from './products.actions';
+import {ProductsService} from "../services/products-service.service";
 
 @Injectable()
 export class ProductsEffects {
-  productsEffects$ = createEffect(() => this.actions$.pipe(
+  fetchProductsEffects$ = createEffect(() => this.actions$.pipe(
     ofType('[Product List] Fetch Product List'),
-    mergeMap(() => this.cartService.basket$.pipe(
+    mergeMap(() => this.productsService.getProducts().pipe(
       map(products => receiveProductList({products}))
       )
     )
@@ -17,7 +17,7 @@ export class ProductsEffects {
 
   constructor(
     private actions$: Actions,
-    private cartService: CartService
+    private productsService: ProductsService
   ) {
   }
 }
