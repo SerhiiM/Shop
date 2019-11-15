@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {NgRxModule} from './@NgRx/@ngRx.module';
 
 import { AppComponent } from './app.component';
 import {ProductsModuleModule} from './products-module/products-module.module';
@@ -17,6 +18,9 @@ import {AdminProductsComponent} from './admin-module/admin-products/admin-produc
 import {AdminProductEditComponent} from './admin-module/admin-product-edit/admin-product-edit.component';
 import {IsAdminGuard} from './shared-module/is-admin.guard';
 import {ProductResolver} from './services/product-resolver.service';
+import {EffectsModule} from '@ngrx/effects';
+import {ProductsEffects} from './@NgRx/products.effects';
+import {CartEffects} from './@NgRx/cart.effects';
 
 const appRoutes: Routes = [
   { path: 'products-list', component: ProductListComponentComponent },
@@ -46,6 +50,7 @@ const appRoutes: Routes = [
     AboutComponent,
   ],
   imports: [
+    EffectsModule.forRoot([ProductsEffects, CartEffects]),
     BrowserModule,
     ProductsModuleModule,
     CartModuleModule,
@@ -54,7 +59,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes
     ),
-    AdminModule
+    AdminModule,
+    NgRxModule
   ],
   providers: [ProductResolver],
   bootstrap: [AppComponent]

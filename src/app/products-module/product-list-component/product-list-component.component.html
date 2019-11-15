@@ -1,9 +1,9 @@
-<a [routerLink]="['/cart']" routerLinkActive="active" *ngIf="(cartService.basket$ | async).length !== 0">Cart</a>
+<a [routerLink]="['/cart']" routerLinkActive="active" *ngIf="(cart$ | async).length !== 0">Cart</a>
 <a [routerLink]="['/admin/products']" routerLinkActive="active" >Go to Admin page</a>
 <button (click)="switchAdminStatus()">Switch Admin rights</button>
 <br/>
 <app-product-component
-  *ngFor="let product of products"
+  *ngFor="let product of (products$ | async)"
   [product]="product"
   (handleBuy)="onBuy($event)">
 </app-product-component>

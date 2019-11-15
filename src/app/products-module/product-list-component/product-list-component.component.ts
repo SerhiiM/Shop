@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductsServiceService} from '../../services/products-service.service';
+import {select, Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
 import {ProductModel} from '../../models/product.model';
-import {CartService} from '../../services/cart-service.service';
+import {fetchProductList} from '../../@NgRx/products.actions';
+import {buyRequest} from '../../@NgRx/cart.actions';
 
 @Component({
   selector: 'app-product-list-component',
@@ -10,18 +12,21 @@ import {CartService} from '../../services/cart-service.service';
 })
 export class ProductListComponentComponent implements OnInit {
 
-  products: ProductModel[];
+  products$: Observable<ProductModel[]>;
+  cart$: Observable<ProductModel[]>;
   constructor(
-    public productsServiceService: ProductsServiceService,
-    public cartService: CartService
-  ) { }
+    private store: Store<any>
+  ) {
+    this.products$ = this.store.pipe(select('products'));
+    this.cart$ = this.store.pipe(select('cart'));
+  }
 
   ngOnInit() {
-    this.products = this.productsServiceService.getProducts();
+    this.store.dispatch(fetchProductList());
   }
 
   onBuy(request) {
-    this.cartService.handleBuyRequest(request.product, request.amount);
+    this.store.dispatch(buyRequest({product: request.product, amount: request.amount}));
   }
 
   switchAdminStatus() {

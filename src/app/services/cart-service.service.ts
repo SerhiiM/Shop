@@ -7,6 +7,7 @@ import {ProductModel} from '../models/product.model';
 })
 export class CartService {
   basket$ = new BehaviorSubject <ProductModel[]> ([]);
+
   constructor() {
     if (localStorage.getItem('basket$')) {
       this.basket$.next(JSON.parse(localStorage.getItem('basket$')));
@@ -14,7 +15,7 @@ export class CartService {
     this.basket$.subscribe(data => localStorage.setItem('basket$', JSON.stringify(data)));
   }
 
-  handleBuyRequest(product: ProductModel, amount: number = 1) {
+  handleBuyRequest(product: ProductModel, amount: number = 1): BehaviorSubject <ProductModel[]> {
     const currentList = this.basket$.value;
     const index = currentList.findIndex(p => p.name === product.name);
     if (index >= 0) {
@@ -23,6 +24,7 @@ export class CartService {
       currentList.push({...product, amount});
     }
     this.basket$.next([...currentList]);
+    return this.basket$;
   }
 
   handleDeleteRequest(product: ProductModel, amount: number = 1) {
