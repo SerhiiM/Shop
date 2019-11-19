@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductsService} from '../../services/products-service.service';
-import {ProductModel} from '../../models/product.model';
-import {ActivatedRoute} from '@angular/router';
 import {map} from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import {select, Store} from '@ngrx/store';
+import {ProductModel} from '../../models/product.model';
+import {selectRouteParams} from '../../@NgRx/router.selectors';
+import {fetchProductList} from "../../@NgRx/products.actions";
 
 @Component({
   selector: 'app-product-details',
@@ -12,14 +12,19 @@ import {Observable} from 'rxjs';
 })
 export class ProductDetailsComponent implements OnInit {
   product: ProductModel;
-  constructor(public productsServiceService: ProductsService, public activeRouter: ActivatedRoute) { }
+  constructor(
+    private store: Store<any>
+  ) {
+    this.store.pipe(select(selectRouteParams))
+      .subscribe(({productID}) => {
+        this.store.pipe(select('products'))
+          .pipe(map(products => products.find(p => p.id === +productID)))
+          .subscribe(product => this.product = product);
+      });
+  }
 
   ngOnInit() {
-    this.activeRouter.params.subscribe(({productID}) => {
-      this.productsServiceService.getProducts()
-        .pipe(map(products => products.find(p => p.id === +productID)))
-        .subscribe(product => this.product = product);
-    });
+    this.store.dispatch(fetchProductList());
   }
 
 }
