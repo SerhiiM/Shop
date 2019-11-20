@@ -21,6 +21,7 @@ import {ProductResolver} from './services/product-resolver.service';
 import {EffectsModule} from '@ngrx/effects';
 import {ProductsEffects} from './@NgRx/products.effects';
 import {CartEffects} from './@NgRx/cart.effects';
+import {RouterEffects} from './@NgRx/router.effects';
 
 const appRoutes: Routes = [
   { path: 'products-list', component: ProductListComponentComponent },
@@ -50,7 +51,7 @@ const appRoutes: Routes = [
     AboutComponent,
   ],
   imports: [
-    EffectsModule.forRoot([ProductsEffects, CartEffects]),
+    EffectsModule.forRoot([ProductsEffects, CartEffects, RouterEffects]),
     BrowserModule,
     ProductsModuleModule,
     CartModuleModule,

@@ -6,3 +6,4 @@
 <button [disabled]="!product.isAvailable" (click)="onBuy()">Buy</button>
 <button [disabled]="!product.isAvailable" (click)="onBuy(3)">Buy several</button>
 <a [routerLink]="['/product/', product.id]" routerLinkActive="active">Details</a>
+<button (click)="handleRedirect(product.id)">Redirect to details</button>
