@@ -51,6 +51,7 @@ const appRoutes: Routes = [
     AboutComponent,
   ],
   imports: [
+    // Почему тут? Вы же создали отдельный модуль для подключения NgRxModule
     EffectsModule.forRoot([ProductsEffects, CartEffects, RouterEffects]),
     BrowserModule,
     ProductsModuleModule,
