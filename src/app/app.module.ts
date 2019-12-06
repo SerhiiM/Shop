@@ -22,6 +22,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {ProductsEffects} from './@NgRx/products.effects';
 import {CartEffects} from './@NgRx/cart.effects';
 import {RouterEffects} from './@NgRx/router.effects';
+import {ProcessOrderComponentComponent} from './orders-module/process-order-component/process-order-component.component';
 
 const appRoutes: Routes = [
   { path: 'products-list', component: ProductListComponentComponent },
@@ -41,6 +42,7 @@ const appRoutes: Routes = [
         },
       }
     ] },
+  { path: 'form', component: ProcessOrderComponentComponent },
   { path: '**', redirectTo: 'products-list' }
 ];
 
@@ -48,7 +50,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    AboutComponent,
+    AboutComponent
   ],
   imports: [
     EffectsModule.forRoot([ProductsEffects, CartEffects, RouterEffects]),
