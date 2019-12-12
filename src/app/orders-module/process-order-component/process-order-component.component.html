@@ -1,33 +1,37 @@
-<form [formGroup]="form" (ngSubmit)="onClickSubmit()" >
-  <label >First name</label>
+<form [formGroup]="form" (ngSubmit)="onClickSubmit()">
+  <label>First name</label>
   <input type="text" formControlName="firstName">
-  <span *ngIf="form.get('firstName').invalid && (form.get('firstName').dirty || form.get('firstName').touched) && form.get('firstName').errors.required">Name is required.</span>
-  <br/>
-  <label >Family name</label>
+  <span
+    *ngIf="form.get('firstName').invalid && (form.get('firstName').dirty || form.get('firstName').touched) && form.get('firstName').errors.required">Name
+    is required.</span>
+  <br />
+  <label>Family name</label>
   <input type="text" formControlName="familyName">
-  <br/>
-  <label >Email</label>
+  <br />
+  <label>Email</label>
   <input type="email" formControlName="email">
   <div *ngIf="form.get('email').invalid && (form.get('email').dirty || form.get('email').touched)">
     <span *ngIf="form.get('email').errors.required">Email is required.</span>
     <span *ngIf="form.get('email').errors.email">Email is not valid.</span>
     <span *ngIf="form.get('email').errors.validateEmail">Email is not valid by custom validation.</span>
   </div>
-  <br/>
-  <div formArrayName="phones"
-       *ngFor="let arrayItem of form.get('phones').value; let i=index">
-    <label >Phone</label>
+  <br />
+  <!-- Я бы разместил *ngFor на дочернем элементе, скажем, можно добавить ng-container -->
+  <div formArrayName="phones" *ngFor="let arrayItem of form.get('phones').value; let i=index">
+    <label>Phone</label>
     <input [id]="i" type="text" [formControl]="arrayItem">
     <button (click)="deletePhoneControl(i)">Delete</button>
   </div>
   <button (click)="addPhoneControl()">Add phone</button>
-  <br/>
-  <label >Pick up</label>
+  <br />
+  <label>Pick up</label>
   <input type="checkbox" formControlName="pickUp">
-  <br/>
+  <br />
   <label *ngIf="!form.get('pickUp').value">Address</label>
   <textarea *ngIf="!form.get('pickUp').value" type="text" formControlName="address"></textarea>
-  <span *ngIf="form.get('address').invalid && (form.get('address').dirty || form.get('address').touched) && form.get('address').errors.required">Address is required.</span>
-  <br/>
+  <span
+    *ngIf="form.get('address').invalid && (form.get('address').dirty || form.get('address').touched) && form.get('address').errors.required">Address
+    is required.</span>
+  <br />
   <button type="submit" [disabled]="!form.valid">Submit</button>
 </form>

@@ -35,7 +35,7 @@ export class ProcessOrderComponentComponent implements OnInit {
     (this.form.get('phones') as FormArray).push(this.fb.control(''));
   }
 
-  deletePhoneControl(i) {
+  deletePhoneControl(i: number) {
     (this.form.get('phones') as FormArray).removeAt(i);
   }
 
