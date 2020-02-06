@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {map} from 'rxjs/operators';
-import {select, Store} from '@ngrx/store';
-import {ProductModel} from '../../models/product.model';
-import {selectRouteParams} from '../../@NgRx/router.selectors';
-import {fetchProductList} from "../../@NgRx/products.actions";
+import { map } from 'rxjs/operators';
+import { select, Store } from '@ngrx/store';
+import { ProductModel } from '../../models/product.model';
+import { selectRouteParams } from '../../@NgRx/router.selectors';
+import { fetchProductList } from "../../@NgRx/products.actions";
 
 @Component({
   selector: 'app-product-details',
@@ -15,8 +15,9 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private store: Store<any>
   ) {
+    // Антипатер subscribe in subscribe. Можно задействовать switchMap
     this.store.pipe(select(selectRouteParams))
-      .subscribe(({productID}) => {
+      .subscribe(({ productID }) => {
         this.store.pipe(select('products'))
           .pipe(map(products => products.find(p => p.id === +productID)))
           .subscribe(product => this.product = product);
